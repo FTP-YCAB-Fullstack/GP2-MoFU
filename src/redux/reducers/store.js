@@ -1,11 +1,15 @@
-import { combineReducers, createStore } from "redux";
+import { combineReducers, createStore , applyMiddleware } from "redux";
+import thunkMiddleware from "redux-thunk";
 import auctionReducer from "./auctionsReducer";
+import { composeWithDevTools } from 'redux-devtools-extension'
+
+const composedEnhancer = composeWithDevTools(applyMiddleware(thunkMiddleware))
 
 const store = createStore(
     combineReducers({
         auctions: auctionReducer
     }),
-    (typeof window !== 'undefined' && window.devToolsExtension) ? window.__REDUX_DEVTOOLS_EXTENSION__() : f => f
+    composedEnhancer
 )
 
 export default store
