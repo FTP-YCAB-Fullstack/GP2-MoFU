@@ -2,6 +2,9 @@ import React , { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { fetchAuction } from './redux/actions/auctions'
 import axios from './axios'
+import { Route, Switch } from 'react-router-dom'
+import Home from './pages/Home'
+import Navbar from './components/Navbar'
 
 const App = () => {
     const dispatch = useDispatch()
@@ -19,9 +22,12 @@ const App = () => {
         fetchData()
     }, [])
     return (
-        <div className="flex justify-center items-center h-screen">
-            <h1 className="text-center text-6xl text-blue-400 font-bold ">Bid Donation Project</h1>
-        </div>
+        <>
+            <Navbar />
+            <Switch>
+                <Route exact path="/" component={Home} />
+            </Switch>
+        </>
     )
 }
 
