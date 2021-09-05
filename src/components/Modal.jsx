@@ -8,7 +8,7 @@ import { modal as modalAction } from "../redux/actions/modal";
 const Modal = () => {
   const modal = useSelector((state) => state.modal);
   const dispatch = useDispatch();
-  console.log(modal);
+
   const closeModal = (e) => {
     let check = e.target.classList.contains("bg-modal");
     if (check) dispatch(modalAction("login"));
