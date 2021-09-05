@@ -4,7 +4,10 @@ import auctionReducer from "./auctionsReducer";
 import { composeWithDevTools } from 'redux-devtools-extension'
 import modalReducer from "./modalReducer";
 import usersReducer from "./usersReducer";
-// import bidReducer from "./bidReducer";
+import bidReducer from "./bidReducer";
+import authReducer from './authReducer'
+import covidReducer from "./covidReducer";
+
 
 const composedEnhancer = composeWithDevTools(applyMiddleware(thunkMiddleware))
 
@@ -13,7 +16,9 @@ const store = createStore(
         auctions: auctionReducer,
         modal: modalReducer,
         users: usersReducer,
-        // bids: bidReducer,
+        bids: bidReducer,
+        auth: authReducer,
+        covid: covidReducer,
     }),
     composedEnhancer
 )
