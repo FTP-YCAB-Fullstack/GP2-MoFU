@@ -1,6 +1,5 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { modal } from "../redux/actions/modal";
 
 const FormLogin = () => {
   const dispatch = useDispatch();
