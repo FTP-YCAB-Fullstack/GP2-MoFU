@@ -10,8 +10,8 @@ const CardLelang = () => {
         <>
             {
                 auctions.length ?
-                    auctions.map(auction => 
-                        <CardLelangItem key={auction.id} auction={auction} />
+                    auctions.map((auction , index) => 
+                        <CardLelangItem index={index} key={auction.id} auction={auction} />
                     )
                     : 
                     <h4 className="text-center text-4xl">Tidak ada data</h4>

@@ -27,9 +27,9 @@ const CollectTotal = () => {
 
     
     return (
-        <div>
-            <span> total donasi </span>
-            <span>Rp {Intl.NumberFormat('id-ID').format(total)}</span>
+        <div className="text-white my-5 rounded-lg w-1/4 h-36 bg-white shadow-md p-8 text-center">
+            <div className="text-2xl font-bold text-black"> Total Donasi </div>
+            <div className="text-2xl font-bold text-black leading-relaxed">Rp {Intl.NumberFormat('id-ID').format(total)}</div>
         </div>
     )
 }
