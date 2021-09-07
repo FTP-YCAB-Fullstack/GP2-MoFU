@@ -2,6 +2,8 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import axios from "../axios";
 import { registerUser } from "../redux/actions/users";
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const FormRegister = () => {
   const dispatch = useDispatch();
@@ -36,45 +38,55 @@ const FormRegister = () => {
     }
   };
   return (
-    <form
+    <motion.form
+      initial={{ opacity: 0, x: -50 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.6 }}
       onSubmit={handleSubmit}
-      className="flex py-10 flex-col items-center w-2/5 "
+      className="flex py-10 flex-col items-center w-full md:w-2/5 "
     >
       <h2 className="text-3xl font-bold mb-5">Register</h2>
       <input
         name="name"
-        className=" outline-none  mb-3 p-2 w-3/4 mt-2"
+        className="outline-none block border-2 border-gray-200 focus:border-green-200 py-2 px-6 my-2 w-5/6 mx-auto rounded-lg"
         type="text"
         placeholder="Masukan username ...."
       />
       <input
         name="email"
-        className=" outline-none  mb-3 p-2 w-3/4 mt-2"
+        className="outline-none block border-2 border-gray-200 focus:border-green-200 py-2 px-6 my-2 w-5/6 mx-auto rounded-lg"
         type="email"
         placeholder="Masukan email ...."
       />
       <input
         name="password"
-        className=" outline-none  mb-3 p-2 w-3/4 mt-2"
+        className="outline-none block border-2 border-gray-200 focus:border-green-200 py-2 px-6 my-2 w-5/6 mx-auto rounded-lg"
         type="password"
         placeholder="Masukan password ...."
       />
       <input
         name="confirm_password"
-        className=" outline-none  mb-3 p-2 w-3/4 mt-2"
+        className="outline-none block border-2 border-gray-200 focus:border-green-200 py-2 px-6 my-2 w-5/6 mx-auto rounded-lg"
         type="password"
         placeholder="Masukan password ...."
       />
-      <div className="w-3/4 flex gap-4 justify-center">
+      <div className="w-3/4 flex gap-4 justify-center mt-6">
         <button
           type="submit"
-          className="bg-white py-2 w-2/3 font-semibold rounded-md "
+          className="bg-green-400 hover:bg-green-500 transition duration-200 text-white py-2 w-2/3 font-semibold rounded-md "
         >
           MASUK
         </button>
       </div>
-      <p className="mt-4">Sudah mempunyai akun? Lakukan Login</p>
-    </form>
+
+      <p className="mt-4">
+        Sudah mempunyai akun?{" "}
+        <Link to="" onClick={() => dispatch({ type: "CHANGE_TO_LOGIN" })}>
+          {" "}
+          Login{" "}
+        </Link>{" "}
+      </p>
+    </motion.form>
   );
 };
 
