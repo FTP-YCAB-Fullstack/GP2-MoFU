@@ -1,7 +1,7 @@
 # GP2-MoFU
 
 ## Preview
-![preview site](https://files.fm/thumb_show.php?i=paaxg67v9 "Preview Website")
+![preview site](https://iili.io/ROb9sf.png "Preview Website")
 
 ## Package
 - React
