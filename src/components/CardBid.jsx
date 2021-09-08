@@ -8,6 +8,7 @@ import { motion } from 'framer-motion'
 const CardBid = ({ bid , index }) => {
     const [user, setUser] = useState(null)
     const users = useSelector(state => state.users)
+    let created = bid.createdAt.match(/\d{4}-\d{2}-\d{2}|\d{2}:\d{2}/g)
 
     useEffect(() => {
         users.forEach(user => {
@@ -16,6 +17,7 @@ const CardBid = ({ bid , index }) => {
             }
         })
     } , [bid , users])
+
 
     const icons = [bidOne, bidTwo , bidThree]
     return (
@@ -36,9 +38,12 @@ const CardBid = ({ bid , index }) => {
                             <h4 className="whitespace-nowrap text-xs md:text-base font-bold">{user.name}</h4>
                         </div>
                         <div className="flex items-center gap-4 md:gap-8 mt-2 ml-4 md:mt-0">
-                            <div className="text-xs md:text-base font-semibold">{bid.createdAt.slice(0, 10)}</div>
-                            <div>
-                                <img src={icons[index]} alt="icon-winner" className="w-4 md:w-10"/>
+                            <div className="text-xs md:text-base font-semibold">{created[1]} | {created[0]} </div>
+                            <div> 
+                                {
+                                    index < 3 &&
+                                    <img src={icons[index]} alt="icon-winner" className="w-4 md:w-10"/>
+                                }
                             </div>
                         </div>
                     </div>
