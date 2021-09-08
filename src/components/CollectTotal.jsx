@@ -13,19 +13,19 @@ const CollectTotal = () => {
         )
         let totalDonation = listAuctions.map(auction => {
             let result = 0
+            let arrayBid = []
             bids.forEach(bid => {
                 if(bid.auction_id === auction.id){
                     result += parseInt(bid.nominal)
-                    console.log(bid.nominal , bid.id)
+                    arrayBid.push(bid.nominal)
                 }
             })
-            return result
+            return parseInt(arrayBid.sort((a,b) => b-a)[0])
         })
         totalDonation = totalDonation.reduce((acc , value) => acc + value)
         setTotal(totalDonation)
     }, [auctions])
 
-    
     return (
         <div className="text-white my-5 rounded-lg w-1/4 h-36 bg-white shadow-md p-8 text-center">
             <div className="text-2xl font-bold text-black"> Total Donasi </div>
