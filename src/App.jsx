@@ -9,6 +9,7 @@ import Modal from './components/Modal'
 import axios from './axios'
 import { Route, Switch , Redirect } from 'react-router-dom'
 import Home from './pages/Home'
+import Detail from './pages/Detail'
 import Admin from './pages/Admin'
 import Navbar from './components/Navbar'
 import { loginUser } from './redux/actions/auth'
@@ -87,6 +88,7 @@ const App = () => {
                         <Route path="/covid" component={Covid} />
                         <Route path="/payment" component={Payment} />
                         <PrivateRoute path="/admin" component={Admin} /> 
+                        <PrivateRoute path="/detail/:id" component={Detail} />
                     </Switch>
                 </div>
             </>

@@ -1,5 +1,6 @@
 import React  , { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
+import { Link , useHistory } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import CardBid from './CardBid'
 import FormBid from './FormBid'
@@ -15,6 +16,7 @@ const CardLelangItem = ({ auction }) => {
     const users = useSelector(state => state.users)
     const auth = useSelector(state => state.auth)
     const bids = useSelector(state=>state.bids)
+    const history = useHistory()
 
     useEffect(() => {
         users.forEach(item => {
@@ -36,7 +38,9 @@ const CardLelangItem = ({ auction }) => {
             }
             return 0
         })
-        matchBid = matchBid.slice(0,3)
+        if(!history.location.pathname.includes('/detail')) {
+            matchBid = matchBid.slice(0,3)
+        }
         setListBids([...matchBid])
     } , [bids])
 
@@ -61,7 +65,7 @@ const CardLelangItem = ({ auction }) => {
                         }
                     </div>
                     <p className="font-semibol">
-                        {auction.date}
+                        <span className="font-semibold md:font-bold text-green-400">Berakhir Pada</span> : {auction.date}
                     </p>
                 </div>
                 <div className="h-72 w-full overflow-hidden flex items-center justify-center rounded-md my-8">
@@ -84,9 +88,18 @@ const CardLelangItem = ({ auction }) => {
                                 new Date(auction.date).toDateString() === new Date().toDateString()
                             )
                         ?  
-                            <button className="bg-green-400 hover:bg-green-500 transition duration-200 text-white text-sm md:text-base py-2 px-4 md:px-8 rounded-md font-semibold" 
-                                onClick={() =>  setDisplayFormBids(!displayFormBids)}
-                            >Pasang Bid</button>
+                            <>
+                                {
+                                    auth.user.role_id === 1 && !history.location.pathname.includes('/detail') ?
+                                        <Link to={`/detail/${auction.id}`}>
+                                            <button className="bg-green-400 hover:bg-green-500 transition duration-200 text-white text-sm md:text-base py-2 px-4 md:px-8 rounded-md font-semibold">Detail</button>
+                                        </Link>
+                                    : ""
+                                }
+                                <button className="bg-green-400 hover:bg-green-500 transition duration-200 text-white text-sm md:text-base py-2 px-4 md:px-8 rounded-md font-semibold" 
+                                    onClick={() =>  setDisplayFormBids(!displayFormBids)}
+                                >Pasang Bid</button>
+                            </>
                         :
                             ''
                     }
