@@ -45,6 +45,9 @@ const Navbar = () => {
                             </>
                             :
                             <>
+                                <Link to="/">
+                                    <button className="text-xl px-3 bg-white rounded-lg mx-2 py-2 font-bold transition duration-200 hover:text-green-400">Home</button>
+                                </Link>
                                 {
                                     auth.user.role_id === 1 ? 
                                         <Link to="/admin" className="text-xl px-3 bg-white rounded-lg mx-2 py-2 font-bold transition duration-200 hover:text-green-400">Admin</Link>
